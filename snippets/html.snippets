@@ -115,7 +115,7 @@ snippet head
 		${2}
 	</head>
 snippet title
-	<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>${2}
+	<title>${1:`substitute(Filename("", "Page Title"), "^.", "\u&", "")`}</title>${2}
 snippet script
 	<script type="text/javascript" charset="utf-8">
 		${1}
@@ -131,7 +131,19 @@ snippet base
 snippet r
 	<br`Close()[1:]`>
 snippet div
-	<div id="${1:name}">
+	<div>
+		${2}
+	</div>
+snippet divi
+	<div id="${1:id}">
+		${2}
+	</div>
+snippet divc
+	<div class="${1:class}">
+		${2}
+	</div>
+snippet divic
+	<div id="${1:id} class="${1:class}">
 		${2}
 	</div>
 # Embed QT Movie
