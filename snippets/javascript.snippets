@@ -123,3 +123,21 @@ snippet ci
 
 snippet ce
 	console.error(${1});
+
+snippet ucls
+	(function () {
+		ustream.classes.${1:`Filename('')`} = $.klass({
+			initialize:	function () {
+				${2}
+			}
+		});
+	}());
+
+snippet uext
+	(function () {
+		ustream.classes.${1:`Filename('')`} = ustream.classes.${2:sourceClass}({
+			initialize:	function () {
+				${3:this.parent();}
+			}
+		});
+	}());
