@@ -24,11 +24,15 @@ if !exists('snippets_dir')
 	let snippets_dir = substitute(globpath(&rtp, 'snippets/'), "\n", ',', 'g')
 endif
 
+if !exists('g:allow_snippet_override')
+	let g:allow_snippet_override = 0
+endif
+
 fun! MakeSnip(scope, trigger, content, ...)
 	let multisnip = a:0 && a:1 != ''
 	let var = multisnip ? 's:multi_snips' : 's:snippets'
 	if !has_key({var}, a:scope) | let {var}[a:scope] = {} | endif
-	if !has_key({var}[a:scope], a:trigger)
+	if !has_key({var}[a:scope], a:trigger) || g:allow_snippet_override
 		let {var}[a:scope][a:trigger] = multisnip ? [[a:1, a:content]] : a:content
 	elseif multisnip | let {var}[a:scope][a:trigger] += [[a:1, a:content]]
 	else
